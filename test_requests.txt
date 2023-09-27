@@ -1,0 +1,24 @@
+# Check if the API is functional
+# Expected output: {"status":"API is functional"}
+curl http://localhost:8000/status/
+
+# Fetch 5 random questions for use = Test de positionnement, subject = BDD, authorization for alice: wonderland
+curl -X 'GET' \
+'http://localhost:8000/questions/?use=Test%20de%20positionnement&subject=BDD&count=2' \
+-H 'Authorization: Basic YWxpY2U6d29uZGVybGFuZA=='
+
+# To add a question to the file using the Base64 encoded string of username:4dm1N (OjRkbTFO)
+curl -X 'POST' 'http://localhost:8000/questions/' \
+     -H 'Authorization: Basic OjRkbTFO' \
+     -H 'Content-Type: application/json' \
+     -d '{
+           "question": "Quel est le data warehouse de GCP",
+           "subject": "cloud",
+           "use": "Test de positionnement",
+           "correct": "A",
+           "responseA": "BigQuery",
+           "responseB": "Cloud Storage",
+           "responseC": "Cloud SQL",
+           "responseD": "Cloud Spanner",
+           "remark": ""
+         }'
